@@ -39,6 +39,11 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
+    public void updateDetails()
+    {
+
+    }
+
     public class information extends AsyncTask<String, String, String>
     {
 
