@@ -1,11 +1,10 @@
-package client.app.clientapp;
+package client.app.clientapp.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +14,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import client.app.clientapp.R;
+import client.app.clientapp.utils.Constants;
 
 
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {

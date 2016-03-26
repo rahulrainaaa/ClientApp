@@ -1,4 +1,4 @@
-package client.app.clientapp;
+package client.app.clientapp.utils;
 
 
 public class Constants

@@ -1,4 +1,4 @@
-package client.app.clientapp;
+package client.app.clientapp.broadcast;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

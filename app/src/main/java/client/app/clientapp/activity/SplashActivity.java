@@ -1,4 +1,4 @@
-package client.app.clientapp;
+package client.app.clientapp.activity;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -11,6 +11,9 @@ import com.google.android.gcm.GCMRegistrar;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+
+import client.app.clientapp.R;
+import client.app.clientapp.utils.Constants;
 
 public class SplashActivity extends AppCompatActivity {
 

@@ -26,7 +26,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SplashActivity"
+            android:name=".activity.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,7 +43,7 @@
             android:value="@integer/google_play_services_version" />
 
         <receiver
-            android:name=".MyBroadcastReceiver"
+            android:name=".broadcast.MyBroadcastReceiver"
             android:enabled="true"
             android:exported="true"
             android:permission="com.google.android.c2dm.permission.SEND">
@@ -56,10 +56,10 @@
         </receiver>
 
         <activity
-            android:name=".DashboardActivity"
+            android:name=".activity.DashboardActivity"
             android:screenOrientation="portrait"></activity>
         <activity
-            android:name=".NotificationActivity"
+            android:name=".activity.NotificationActivity"
             android:label="@string/title_activity_notification"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
