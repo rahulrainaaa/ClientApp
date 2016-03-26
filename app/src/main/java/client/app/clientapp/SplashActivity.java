@@ -35,6 +35,8 @@ public class SplashActivity extends AppCompatActivity {
         }
         else
         {
+            startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
+            finish();
             Toast.makeText(getApplicationContext(), "no GCM support", Toast.LENGTH_LONG).show();
         }
 
