@@ -29,7 +29,6 @@ public class SplashActivity extends AppCompatActivity {
 
         if(ConnectionResult.SUCCESS == GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext()))
         {
-            Toast.makeText(getApplicationContext(), "yes GCM support", Toast.LENGTH_LONG).show();
             information info = new information();
             info.execute("");
         }
@@ -37,7 +36,7 @@ public class SplashActivity extends AppCompatActivity {
         {
             startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
             finish();
-            Toast.makeText(getApplicationContext(), "no GCM support", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Error: Google Cloud Messaging not supported.", Toast.LENGTH_LONG).show();
         }
 
     }
@@ -49,16 +48,12 @@ public class SplashActivity extends AppCompatActivity {
 
     public class information extends AsyncTask<String, String, String>
     {
-
-
-        @Override
+       @Override
         protected void onPreExecute() {
-
         }
 
         @Override
         protected String doInBackground(String... params) {
-            // TODO Auto-generated method stub
 
             try
             {
@@ -74,20 +69,15 @@ public class SplashActivity extends AppCompatActivity {
                 msg = "Error :" + e.getMessage();
 
             }
-
-
             return msg.toString();
         }
 
         @Override
         protected void onPostExecute(String result) {
 
-           Toast.makeText(getApplicationContext(), "" + result, Toast.LENGTH_LONG).show();
             editText.setText("" + result.toString());
-
             startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
             finish();
         }
     }
-
 }

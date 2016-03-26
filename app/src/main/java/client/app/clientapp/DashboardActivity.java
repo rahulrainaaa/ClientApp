@@ -1,11 +1,15 @@
 package client.app.clientapp;
 
+import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
 
@@ -14,6 +18,12 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     private ImageView imgCall;
     private ImageView imgWebsite;
     private ImageView imgLocation;
+
+    Animation animNotification;
+    Animation animEmail;
+    Animation animCall;
+    Animation animWeb;
+    Animation animLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +36,17 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         imgWebsite = (ImageView)findViewById(R.id.id_website);
         imgLocation = (ImageView)findViewById(R.id.id_location);
 
+        animNotification = AnimationUtils.loadAnimation(this, R.anim.anim_pop_notification);
+        animEmail = AnimationUtils.loadAnimation(this, R.anim.anim_pop_mail);
+        animCall = AnimationUtils.loadAnimation(this, R.anim.anim_pop_call);
+        animWeb = AnimationUtils.loadAnimation(this, R.anim.anim_pop_web);
+        animLocation = AnimationUtils.loadAnimation(this, R.anim.anim_pop_location);
+
+        imgNotification.startAnimation(animNotification);
+        imgEmail.startAnimation(animEmail);
+        imgCall.startAnimation(animCall);
+        imgWebsite.startAnimation(animWeb);
+        imgLocation.startAnimation(animLocation);
 
         imgNotification.setOnClickListener(this);
         imgEmail.setOnClickListener(this);

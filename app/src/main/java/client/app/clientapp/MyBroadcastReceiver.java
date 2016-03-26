@@ -13,6 +13,6 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
 
-        Toast.makeText(context.getApplicationContext(), "GCM push received by clientapp.", Toast.LENGTH_LONG).show();
+//       / Toast.makeText(context.getApplicationContext(), "GCM push received by clientapp.", Toast.LENGTH_LONG).show();
     }
 }
