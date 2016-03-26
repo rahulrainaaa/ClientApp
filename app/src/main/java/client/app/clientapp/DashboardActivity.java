@@ -1,7 +1,13 @@
 package client.app.clientapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -30,11 +36,11 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        imgCall = (ImageView)findViewById(R.id.id_call);
-        imgNotification = (ImageView)findViewById(R.id.id_notification);
-        imgEmail = (ImageView)findViewById(R.id.id_email);
-        imgWebsite = (ImageView)findViewById(R.id.id_website);
-        imgLocation = (ImageView)findViewById(R.id.id_location);
+        imgCall = (ImageView) findViewById(R.id.id_call);
+        imgNotification = (ImageView) findViewById(R.id.id_notification);
+        imgEmail = (ImageView) findViewById(R.id.id_email);
+        imgWebsite = (ImageView) findViewById(R.id.id_website);
+        imgLocation = (ImageView) findViewById(R.id.id_location);
 
         animNotification = AnimationUtils.loadAnimation(this, R.anim.anim_pop_notification);
         animEmail = AnimationUtils.loadAnimation(this, R.anim.anim_pop_mail);
@@ -65,18 +71,52 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
 
-
-        if(v.getId() == R.id.id_call)
-        {
-            Toast.makeText(getApplicationContext(), "calling", Toast.LENGTH_SHORT).show();
+        if (v.getId() == R.id.id_call) {
+            try {
+                if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(getApplicationContext(), "Call Permission Denied.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                String uri = "tel:67623623743284632846783246";
+                Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse(uri));
+                startActivity(callIntent);
+            } catch (Exception e)
+            {
+                Toast.makeText(getApplicationContext(), "Cannot Make Call.", Toast.LENGTH_SHORT).show();
+            }
         }
         else if(v.getId() == R.id.id_email)
         {
-
+            Intent i = new Intent(Intent.ACTION_SEND);
+            i.setType("text/plain");
+            i.putExtra(Intent.EXTRA_EMAIL  , new String[]{Constants.MAIL});
+            i.putExtra(Intent.EXTRA_SUBJECT, "");
+            i.putExtra(Intent.EXTRA_TEXT   , "");
+            try
+            {
+                startActivity(Intent.createChooser(i, ""));
+            } catch (android.content.ActivityNotFoundException ex)
+            {
+                Toast.makeText(getApplicationContext(), "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+            }
         }
         else if(v.getId() == R.id.id_location)
         {
-
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DashboardActivity.this);
+            alertDialogBuilder.setNegativeButton("OK", null);
+            alertDialogBuilder.setPositiveButton("Show on Map", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                            Uri.parse("http://maps.google.com/maps?daddr=" + Constants.ADDRESS_LAT_LONG));
+                    startActivity(intent);
+                }
+            });
+            alertDialogBuilder.setIcon(R.drawable.icon_map_pin);
+            alertDialogBuilder.setTitle("Address");
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.setMessage("\n" + Constants.ADDRESS_LINE_1 + "\n" + Constants.ADDRESS_LINE_2 + "\n" + Constants.ADDRESS_LINE_3 + "\n");
+            alertDialog.show();
         }
         else if(v.getId() == R.id.id_notification)
         {
@@ -84,6 +124,14 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         }
         else if(v.getId() == R.id.id_website)
         {
+            try
+            {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.WEB));
+                startActivity(browserIntent);
+            } catch (Exception e)
+            {
+                Toast.makeText(getApplicationContext(), "Invalid URL\n Cannot open web.", Toast.LENGTH_SHORT).show();
+            }
 
         }
 
