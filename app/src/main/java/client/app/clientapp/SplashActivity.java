@@ -1,5 +1,6 @@
 package client.app.clientapp;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -81,6 +82,9 @@ public class SplashActivity extends AppCompatActivity {
 
            Toast.makeText(getApplicationContext(), "" + result, Toast.LENGTH_LONG).show();
             editText.setText("" + result.toString());
+
+            startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
+            finish();
         }
     }
 
