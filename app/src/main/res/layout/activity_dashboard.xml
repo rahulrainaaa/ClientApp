@@ -51,7 +51,7 @@
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:background="#ffffff"
-                        android:src="@drawable/icon_email"
+                        android:src="@drawable/icon_mail"
                         android:id="@+id/id_email" />
 
                 </LinearLayout>
@@ -91,7 +91,7 @@
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:background="#ffffff"
-                        android:src="@drawable/icon_website"
+                        android:src="@drawable/icon_web"
                         android:id="@+id/id_website" />
 
                 </LinearLayout>
