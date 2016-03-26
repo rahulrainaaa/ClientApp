@@ -27,6 +27,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.SplashActivity"
+            android:label="Client Application"
+            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -57,6 +59,7 @@
 
         <activity
             android:name=".activity.DashboardActivity"
+            android:label="Dashboard"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activity.NotificationActivity"

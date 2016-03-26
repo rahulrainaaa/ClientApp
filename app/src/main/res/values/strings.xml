@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">ClientApp</string>
-    <string name="title_activity_notification">NotificationActivity</string>
+    <string name="title_activity_notification">Notifications</string>
 </resources>

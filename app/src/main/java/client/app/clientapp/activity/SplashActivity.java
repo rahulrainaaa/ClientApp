@@ -1,6 +1,7 @@
 package client.app.clientapp.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,6 +28,8 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         editText = (EditText)findViewById(R.id.editText);
+
+        SharedPreferences s = getSharedPreferences("info_cache", 0);
 
         GCMRegistrar.checkDevice(getApplicationContext());
 
@@ -79,8 +82,8 @@ public class SplashActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             editText.setText("" + result.toString());
-            startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
-            finish();
+           // startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
+            //finish();
         }
     }
 }
