@@ -18,6 +18,6 @@ public class MyBroadcastReceiver extends WakefulBroadcastReceiver {
 
         ComponentName comp = new ComponentName(context.getPackageName(), GCMIntentService.class.getName());
         startWakefulService(context, (intent.setComponent(comp)));
-        //Toast.makeText(context.getApplicationContext(), "GCM push received by clientapp.", Toast.LENGTH_LONG).show();
+        Toast.makeText(context.getApplicationContext(), "GCM push received by clientapp.", Toast.LENGTH_LONG).show();
     }
 }
