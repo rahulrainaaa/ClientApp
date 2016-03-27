@@ -92,7 +92,7 @@ public class SplashActivity extends AppCompatActivity {
                 //Hit REST-POST webservice to update GCM_ID
                 JSONObject json = new JSONObject();
                 json.put("GCM_ID", msg.toString());
-                json.put("CATEGORY", "default");
+                json.put("CATEGORY", "");
                 json.put("", "");
 
 
