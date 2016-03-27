@@ -28,8 +28,8 @@
         <activity
             android:name=".activity.SplashActivity"
             android:label="Client Application"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -60,11 +60,16 @@
         <activity
             android:name=".activity.DashboardActivity"
             android:label="Dashboard"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.NotificationActivity"
             android:label="@string/title_activity_notification"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <service
+            android:name=".service.GCMIntentService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
