@@ -13,7 +13,14 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
-import org.json.JSONObject;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import client.app.clientapp.R;
 import client.app.clientapp.utils.Constants;
@@ -32,7 +39,7 @@ public class SplashActivity extends AppCompatActivity {
         editText = (EditText)findViewById(R.id.editText);
 
         SharedPreferences s = getSharedPreferences("info_cache", 0);
-        String pref = s.getString("REGISTER_GCM", "NO");
+        String pref = s.getString("REGISTER_GCM", "NO").trim();
 
         GCMRegistrar.checkDevice(getApplicationContext());
 
@@ -45,7 +52,8 @@ public class SplashActivity extends AppCompatActivity {
             }
             else
             {
-                //YES GCM is registered.
+                startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
+                finish();
             }
         }
         else
@@ -54,12 +62,6 @@ public class SplashActivity extends AppCompatActivity {
             finish();
             Toast.makeText(getApplicationContext(), "Error: Google Cloud Messaging not supported.", Toast.LENGTH_LONG).show();
         }
-
-    }
-
-    public void updateDetails()
-    {
-
     }
 
     public class information extends AsyncTask<String, String, String>
@@ -80,22 +82,33 @@ public class SplashActivity extends AppCompatActivity {
                 }
                 msg = "" + gcm.register(Constants.PROJECT_NUMBER.toString().trim());
 
-                if(msg.equalsIgnoreCase("invalid")
-                        || msg.equalsIgnoreCase("error")
-                        || msg.equalsIgnoreCase("misplace")
-                        || msg.equalsIgnoreCase("missing")
-                        || msg.equalsIgnoreCase("exceed"))
+                if(msg.contains("invalid")
+                        || msg.contains("error")
+                        || msg.contains("exception")
+                        || msg.contains("fail")
+                        || msg.contains("misplace")
+                        || msg.contains("missing")
+                        || msg.contains("exceed"))
                 {
                     return "ERROR";
                 }
 
-                //Hit REST-POST webservice to update GCM_ID
+                //Hit webservice to update GCM_ID
 
-                //HttpClient client = new DefaultHttpClient();
+                HttpClient client = new DefaultHttpClient();
+                HttpPost post = new HttpPost(Constants.REGISTER_DEVICE + "?GCM_ID=" + msg +"&CATEGORY=default");
+                HttpResponse res = client.execute(post);
+                InputStream it = res.getEntity().getContent();
+                InputStreamReader read = new InputStreamReader(it);
+                BufferedReader buff = new BufferedReader(read);
+                StringBuilder dta = new StringBuilder();
+                String chunks ;
+                while((chunks = buff.readLine()) != null){
+                    dta.append(chunks);
+                }
 
+                return dta.toString();
 
-
-                return msg;
             }
             catch (Exception e)
             {
@@ -109,13 +122,18 @@ public class SplashActivity extends AppCompatActivity {
             editText.setText("" + result.toString());
             if(result.equals("EXCEPTION")  || result.equals("ERROR"))
             {
-
+                Toast.makeText(getApplicationContext(), "Register fail.\n Please check innternet connection.", Toast.LENGTH_SHORT).show();
             }
             else
             {
-                // startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
-                //finish();
+                SharedPreferences.Editor se = getSharedPreferences("info_cache",0).edit();
+                se.putString("REGISTER_GCM","YES");
+                se.putString("GCM_ID", "" + msg.toString());
+                se.putString("CATEGORY", "default");
+                se.commit();
             }
+            startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
+            finish();
         }
     }
 }

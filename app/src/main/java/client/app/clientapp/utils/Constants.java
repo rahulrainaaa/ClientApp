@@ -21,6 +21,6 @@ public class Constants
     public static String ADDRESS_LAT_LONG = "18.505498, 73.802596";
 
     //WebServices urls
-    public static String REGISTER_DEVICE = "http://dfhds.com/sdlkf/dsklfn";
+    public static String REGISTER_DEVICE = "http://10.0.0.21:8080/ProMobileWebService/RegDevice";
 
 }
