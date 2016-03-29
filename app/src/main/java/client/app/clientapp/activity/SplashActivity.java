@@ -13,6 +13,16 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
+import org.apache.http.HttpClientConnection;
+import org.apache.http.impl.DefaultHttpClientConnection;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 import client.app.clientapp.R;
 import client.app.clientapp.utils.Constants;
 
@@ -86,19 +96,28 @@ public class SplashActivity extends AppCompatActivity {
 
                 //Hit webservice to update GCM_ID
 
-               /* HttpClient client = new DefaultHttpClient();
-                HttpPost post = new HttpPost(Constants.REGISTER_DEVICE + "?GCM_ID=" + msg +"&CATEGORY=default");
-                HttpResponse res = client.execute(post);
-                InputStream it = res.getEntity().getContent();
-                InputStreamReader read = new InputStreamReader(it);
-                BufferedReader buff = new BufferedReader(read);
-                StringBuilder dta = new StringBuilder();
-                String chunks ;
-                while((chunks = buff.readLine()) != null){
-                    dta.append(chunks);
-                }*/
+                URL url = new URL(Constants.REGISTER_DEVICE + "?GCM_ID=" + msg +"&CATEGORY=default");
+                HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
+                urlConnection.setRequestMethod("GET");
+                int statusCode = urlConnection.getResponseCode();
+                if (statusCode ==  200)
+                {
+                    InputStream it = new BufferedInputStream(urlConnection.getInputStream());
+                    InputStreamReader read = new InputStreamReader(it);
+                    BufferedReader buff = new BufferedReader(read);
+                    StringBuilder dta = new StringBuilder();
+                    String chunks ;
+                    while((chunks = buff.readLine()) != null)
+                    {
+                        dta.append(chunks);
+                    }
+                    return dta.toString();
+                }
+                else
+                {
+                    return "ERROR";
+                }
 
-                return "";// dta.toString();
 
             }
             catch (Exception e)
