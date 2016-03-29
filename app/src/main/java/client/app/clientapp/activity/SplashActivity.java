@@ -13,15 +13,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
 import client.app.clientapp.R;
 import client.app.clientapp.utils.Constants;
 
@@ -95,7 +86,7 @@ public class SplashActivity extends AppCompatActivity {
 
                 //Hit webservice to update GCM_ID
 
-                HttpClient client = new DefaultHttpClient();
+               /* HttpClient client = new DefaultHttpClient();
                 HttpPost post = new HttpPost(Constants.REGISTER_DEVICE + "?GCM_ID=" + msg +"&CATEGORY=default");
                 HttpResponse res = client.execute(post);
                 InputStream it = res.getEntity().getContent();
@@ -105,9 +96,9 @@ public class SplashActivity extends AppCompatActivity {
                 String chunks ;
                 while((chunks = buff.readLine()) != null){
                     dta.append(chunks);
-                }
+                }*/
 
-                return dta.toString();
+                return "";// dta.toString();
 
             }
             catch (Exception e)
