@@ -79,7 +79,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                     Toast.makeText(getApplicationContext(), "Call Permission Denied.", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                String uri = "tel:67623623743284632846783246";
+                String uri = "tel:" + Constants.PHONE;
                 Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse(uri));
                 startActivity(callIntent);
             } catch (Exception e)
