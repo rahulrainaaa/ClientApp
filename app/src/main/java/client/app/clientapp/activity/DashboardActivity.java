@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import client.app.clientapp.R;
@@ -27,16 +28,18 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     private ImageView imgWebsite;
     private ImageView imgLocation;
 
-    Animation animNotification;
-    Animation animEmail;
-    Animation animCall;
-    Animation animWeb;
-    Animation animLocation;
+    private TextView t1,t2,t3,t4,t5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        t1 = (TextView)findViewById(R.id.id_text_address);
+        t2 = (TextView)findViewById(R.id.id_text_call);
+        t3 = (TextView)findViewById(R.id.id_text_email);
+        t4 = (TextView)findViewById(R.id.id_text_notification);
+        t5 = (TextView)findViewById(R.id.id_text_web);
 
         imgCall = (ImageView) findViewById(R.id.id_call);
         imgNotification = (ImageView) findViewById(R.id.id_notification);
@@ -44,17 +47,24 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         imgWebsite = (ImageView) findViewById(R.id.id_website);
         imgLocation = (ImageView) findViewById(R.id.id_location);
 
-        animNotification = AnimationUtils.loadAnimation(this, R.anim.anim_pop_notification);
-        animEmail = AnimationUtils.loadAnimation(this, R.anim.anim_pop_mail);
-        animCall = AnimationUtils.loadAnimation(this, R.anim.anim_pop_call);
-        animWeb = AnimationUtils.loadAnimation(this, R.anim.anim_pop_web);
-        animLocation = AnimationUtils.loadAnimation(this, R.anim.anim_pop_location);
+        Animation animNotification = AnimationUtils.loadAnimation(this, R.anim.anim_pop_notification);
+        Animation animEmail = AnimationUtils.loadAnimation(this, R.anim.anim_pop_mail);
+        Animation animCall = AnimationUtils.loadAnimation(this, R.anim.anim_pop_call);
+        Animation animWeb = AnimationUtils.loadAnimation(this, R.anim.anim_pop_web);
+        Animation animLocation = AnimationUtils.loadAnimation(this, R.anim.anim_pop_location);
 
         imgNotification.startAnimation(animNotification);
         imgEmail.startAnimation(animEmail);
         imgCall.startAnimation(animCall);
         imgWebsite.startAnimation(animWeb);
         imgLocation.startAnimation(animLocation);
+
+        Animation animtaion = AnimationUtils.loadAnimation(this, R.anim.anim_label_appear);
+        t1.startAnimation(animtaion);
+        t2.startAnimation(animtaion);
+        t3.startAnimation(animtaion);
+        t4.startAnimation(animtaion);
+        t5.startAnimation(animtaion);
 
         imgNotification.setOnClickListener(this);
         imgEmail.setOnClickListener(this);
