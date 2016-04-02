@@ -11,8 +11,8 @@
     <scale
         android:fromXScale="0dp"
         android:fromYScale="0dp"
-        android:toXScale="120dp"
-        android:toYScale="120dp"
+        android:toXScale="80dp"
+        android:toYScale="80dp"
         android:duration="700"
         android:pivotX="50%"
         android:pivotY="50%"
