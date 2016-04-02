@@ -132,7 +132,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         }
         else if(v.getId() == R.id.id_notification)
         {
-
+            startActivity(new Intent(DashboardActivity.this, NotificationActivity.class));
         }
         else if(v.getId() == R.id.id_website)
         {

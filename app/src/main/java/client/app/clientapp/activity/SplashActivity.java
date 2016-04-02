@@ -3,6 +3,7 @@ package client.app.clientapp.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -53,14 +54,21 @@ public class SplashActivity extends AppCompatActivity {
             }
             else
             {
-                startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
-                finish();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
+                        finish();
+                    }
+                }, 1000);
             }
         }
         else
         {
-            startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
-            finish();
+            //startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
+            //finish();
             Toast.makeText(getApplicationContext(), "Error: Google Cloud Messaging not supported.", Toast.LENGTH_LONG).show();
         }
     }
@@ -118,7 +126,6 @@ public class SplashActivity extends AppCompatActivity {
                     return "ERROR";
                 }
 
-
             }
             catch (Exception e)
             {
@@ -132,7 +139,7 @@ public class SplashActivity extends AppCompatActivity {
             editText.setText("" + result.toString());
             if(result.equals("EXCEPTION")  || result.equals("ERROR"))
             {
-                Toast.makeText(getApplicationContext(), "Register fail.\n Please check innternet connection.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Check internet connection.", Toast.LENGTH_SHORT).show();
             }
             else
             {

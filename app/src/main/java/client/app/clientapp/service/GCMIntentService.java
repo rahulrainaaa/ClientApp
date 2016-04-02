@@ -6,10 +6,18 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.widget.Toast;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import client.app.clientapp.R;
 import client.app.clientapp.activity.DashboardActivity;
@@ -45,6 +53,7 @@ public class GCMIntentService extends IntentService {
             else if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType))
             {
                 sendNotification("" + extras.getString("title"), "" + extras.getString("message"));
+                saveData("" + extras.getString("title"), "" + extras.getString("message"));
             }
         }
         MyBroadcastReceiver.completeWakefulIntent(intent);
@@ -69,6 +78,33 @@ public class GCMIntentService extends IntentService {
         mBuilder.setContentIntent(contentIntent);
         mBuilder.setAutoCancel(true);
         mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
+
+    }
+
+    private void saveData(String title, String msg)
+    {
+
+        try
+        {
+            SharedPreferences s = getSharedPreferences("info_push", 0);
+            String str = s.getString("data", "");
+            JSONArray j = new JSONArray(str);
+            JSONObject json = new JSONObject();
+            Calendar c = Calendar.getInstance();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd:MMMM:yyyy HH:mm:ss a");
+            String datetime = sdf.format(c.getTime());
+            json.put("message", "" + msg);
+            json.put("title", "" + title);
+            json.put("datetime", "" + datetime);
+            j.put(json);
+            SharedPreferences.Editor se = getSharedPreferences("info_push",0).edit();
+            se.putString("data", j.toString());
+            se.commit();
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(getApplicationContext(), "Error: Cannot save data.", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
