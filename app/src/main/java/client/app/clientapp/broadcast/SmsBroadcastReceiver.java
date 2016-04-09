@@ -53,62 +53,7 @@ public class SmsBroadcastReceiver extends BroadcastReceiver {
         }
     }
 
-    public class registerTask extends AsyncTask<String, String, String>
-    {
-        @Override
-        protected void onPreExecute() {
 
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            try {
-
-                URL url = new URL(Constants.REGISTER_DEVICE + "?CATEGORY=default");
-                HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
-                urlConnection.setRequestMethod("GET");
-                int statusCode = urlConnection.getResponseCode();
-                if (statusCode ==  200)
-                {
-                    InputStream it = new BufferedInputStream(urlConnection.getInputStream());
-                    InputStreamReader read = new InputStreamReader(it);
-                    BufferedReader buff = new BufferedReader(read);
-                    StringBuilder dta = new StringBuilder();
-                    String chunks ;
-                    while((chunks = buff.readLine()) != null)
-                    {
-                        dta.append(chunks);
-                    }
-                    return dta.toString();
-                }
-                else
-                {
-                    return "ERROR";
-                }
-
-            }
-            catch (Exception e)
-            {
-                return "EXCEPTION";
-            }
-
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-
-            if(s.contains("EXCEPTION") || s.contains("ERROR"))
-            {
-
-            }
-            else
-            {
-
-            }
-            Toast.makeText(ctxt, "" + s, Toast.LENGTH_LONG).show();
-        }
-    }
 
 
 }

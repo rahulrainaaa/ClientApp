@@ -102,34 +102,12 @@ public class SplashActivity extends AppCompatActivity {
                     return "ERROR";
                 }
 
-                //Hit webservice to update GCM_ID
-
-                URL url = new URL(Constants.REGISTER_DEVICE + "?GCM_ID=" + msg +"&CATEGORY=default");
-                HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
-                urlConnection.setRequestMethod("GET");
-                int statusCode = urlConnection.getResponseCode();
-                if (statusCode ==  200)
-                {
-                    InputStream it = new BufferedInputStream(urlConnection.getInputStream());
-                    InputStreamReader read = new InputStreamReader(it);
-                    BufferedReader buff = new BufferedReader(read);
-                    StringBuilder dta = new StringBuilder();
-                    String chunks ;
-                    while((chunks = buff.readLine()) != null)
-                    {
-                        dta.append(chunks);
-                    }
-                    return dta.toString();
-                }
-                else
-                {
-                    return "ERROR";
-                }
+               return msg.toString();
 
             }
             catch (Exception e)
             {
-                return "EXCEPTION";
+                return "ERROR";
             }
         }
 
@@ -137,7 +115,7 @@ public class SplashActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             editText.setText("" + result.toString());
-            if(result.equals("EXCEPTION")  || result.equals("ERROR"))
+            if(result.equals("ERROR"))
             {
                 Toast.makeText(getApplicationContext(), "Check internet connection.", Toast.LENGTH_SHORT).show();
             }
