@@ -27,8 +27,9 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     private ImageView imgCall;
     private ImageView imgWebsite;
     private ImageView imgLocation;
+    private ImageView imgMaps;
 
-    private TextView t1,t2,t3,t4,t5;
+    private TextView t1,t2,t3,t4,t5,t6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,24 +41,28 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         t3 = (TextView)findViewById(R.id.id_text_email);
         t4 = (TextView)findViewById(R.id.id_text_notification);
         t5 = (TextView)findViewById(R.id.id_text_web);
+        t6 = (TextView)findViewById(R.id.id_text_maps);
 
         imgCall = (ImageView) findViewById(R.id.id_call);
         imgNotification = (ImageView) findViewById(R.id.id_notification);
         imgEmail = (ImageView) findViewById(R.id.id_email);
         imgWebsite = (ImageView) findViewById(R.id.id_website);
         imgLocation = (ImageView) findViewById(R.id.id_location);
+        imgMaps = (ImageView) findViewById(R.id.id_maps);
 
         Animation animNotification = AnimationUtils.loadAnimation(this, R.anim.anim_pop_notification);
         Animation animEmail = AnimationUtils.loadAnimation(this, R.anim.anim_pop_mail);
         Animation animCall = AnimationUtils.loadAnimation(this, R.anim.anim_pop_call);
         Animation animWeb = AnimationUtils.loadAnimation(this, R.anim.anim_pop_web);
         Animation animLocation = AnimationUtils.loadAnimation(this, R.anim.anim_pop_location);
+        Animation animMaps = AnimationUtils.loadAnimation(this, R.anim.anim_pop_maps);
 
         imgNotification.startAnimation(animNotification);
         imgEmail.startAnimation(animEmail);
         imgCall.startAnimation(animCall);
         imgWebsite.startAnimation(animWeb);
         imgLocation.startAnimation(animLocation);
+        imgMaps.startAnimation(animMaps);
 
         Animation animtaion = AnimationUtils.loadAnimation(this, R.anim.anim_label_appear);
         t1.startAnimation(animtaion);
@@ -65,19 +70,21 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         t3.startAnimation(animtaion);
         t4.startAnimation(animtaion);
         t5.startAnimation(animtaion);
+        t6.startAnimation(animtaion);
 
         imgNotification.setOnClickListener(this);
         imgEmail.setOnClickListener(this);
         imgWebsite.setOnClickListener(this);
         imgCall.setOnClickListener(this);
         imgLocation.setOnClickListener(this);
+        imgMaps.setOnClickListener(this);
 
         imgNotification.setOnLongClickListener(this);
         imgEmail.setOnLongClickListener(this);
         imgWebsite.setOnLongClickListener(this);
         imgCall.setOnLongClickListener(this);
         imgLocation.setOnLongClickListener(this);
-
+        imgMaps.setOnLongClickListener(this);
     }
 
     @Override
@@ -114,21 +121,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         }
         else if(v.getId() == R.id.id_location)
         {
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DashboardActivity.this);
-            alertDialogBuilder.setNegativeButton("OK", null);
-            alertDialogBuilder.setPositiveButton("Show on Map", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                            Uri.parse("http://maps.google.com/maps?daddr=" + Constants.ADDRESS_LAT_LONG));
-                    startActivity(intent);
-                }
-            });
-            alertDialogBuilder.setIcon(R.drawable.icon_map_pin);
-            alertDialogBuilder.setTitle("Address");
-            AlertDialog alertDialog = alertDialogBuilder.create();
-            alertDialog.setMessage("\n" + Constants.ADDRESS_LINE_1 + "\n" + Constants.ADDRESS_LINE_2 + "\n" + Constants.ADDRESS_LINE_3 + "\n");
-            alertDialog.show();
+            //new page for address location.
         }
         else if(v.getId() == R.id.id_notification)
         {
@@ -145,6 +138,12 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 Toast.makeText(getApplicationContext(), "Invalid URL\n Cannot open web.", Toast.LENGTH_SHORT).show();
             }
 
+        }
+        else if(v.getId() == R.id.id_maps)
+        {
+            Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                    Uri.parse("http://maps.google.com/maps?daddr=" + Constants.ADDRESS_LAT_LONG));
+            startActivity(intent);
         }
 
     }
@@ -172,7 +171,10 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         {
             Snackbar.make(v, "Visit Us", Snackbar.LENGTH_LONG).show();
         }
-
+        else if(v.getId() == R.id.id_maps)
+        {
+            Snackbar.make(v, "Map Location", Snackbar.LENGTH_LONG).show();
+        }
         return true;
     }
 
