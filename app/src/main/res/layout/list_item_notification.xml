@@ -2,74 +2,86 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#c72621"
-    android:padding="1dp">
+    android:paddingBottom="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
+    android:background="#fafafa"
+    android:layout_height="wrap_content" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:paddingBottom="1dp"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:paddingTop="1dp"
+        android:background="#c72621" >
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="16-April-2016"
-            android:paddingLeft="7dp"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
-            android:gravity="left"
-            android:id="@+id/textView2"
-            android:textColor="#ffffff" />
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="11:45 AM"
-            android:paddingRight="7dp"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
-
-            android:gravity="right"
-            android:id="@+id/textView3"
-            android:textColor="#ffffff" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+            android:orientation="horizontal">
 
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_map_pin"
-            android:paddingLeft="7dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:paddingRight="8dp"
-            android:id="@+id/imageView" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="16-April-2016"
+                android:paddingLeft="7dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:gravity="left"
+                android:id="@+id/txtDate"
+                android:textColor="#ffffff" />
 
-        <TextView
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="11:45 AM"
+                android:paddingRight="7dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:gravity="right"
+                android:id="@+id/txtTime"
+                android:textColor="#ffffff" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:paddingRight="4dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:text="Notifiaction text\ndlfgnk\nldkfg\nkdlfng\nlkdf"
-            android:id="@+id/textView4"
-            android:textColor="#000000" />
+            android:background="#fafafa"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_map_pin"
+                android:paddingLeft="7dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingRight="8dp"
+                android:id="@+id/imageView" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:paddingRight="4dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="Notifiaction text\ndlfgnk\nldkfg\nkdlfng\nlkdf"
+                android:id="@+id/txtNotification"
+                android:textColor="#000000" />
+
+
+        </LinearLayout>
 
     </LinearLayout>
-
 
 </LinearLayout>
