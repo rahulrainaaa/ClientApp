@@ -52,8 +52,8 @@ public class GCMIntentService extends IntentService {
             }
             else if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType))
             {
-                sendNotification("" + extras.getString("title"), "" + extras.getString("message"));
                 saveData("" + extras.getString("title"), "" + extras.getString("message"));
+                sendNotification("" + extras.getString("title"), "" + extras.getString("message"));
             }
         }
         MyBroadcastReceiver.completeWakefulIntent(intent);
@@ -87,7 +87,7 @@ public class GCMIntentService extends IntentService {
         try
         {
             SharedPreferences s = getSharedPreferences("info_push", 0);
-            String str = s.getString("data", "");
+            String str = s.getString("data", "[]");
             JSONArray j = new JSONArray(str);
             JSONObject json = new JSONObject();
             Calendar c = Calendar.getInstance();
@@ -101,10 +101,7 @@ public class GCMIntentService extends IntentService {
             se.putString("data", j.toString());
             se.commit();
         }
-        catch (Exception e)
-        {
-            Toast.makeText(getApplicationContext(), "Error: Cannot save data.", Toast.LENGTH_SHORT).show();
-        }
+        catch (Exception e) {}
 
     }
 
