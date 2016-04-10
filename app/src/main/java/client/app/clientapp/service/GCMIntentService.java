@@ -91,7 +91,7 @@ public class GCMIntentService extends IntentService {
             JSONArray j = new JSONArray(str);
             JSONObject json = new JSONObject();
             Calendar c = Calendar.getInstance();
-            SimpleDateFormat sdfDate = new SimpleDateFormat("dd-MMMM:yyyy");
+            SimpleDateFormat sdfDate = new SimpleDateFormat("dd-MMMM-yyyy");
             SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm:ss a");
             String datee = sdfDate.format(c.getTime());
             String timee = sdfTime.format(c.getTime());
