@@ -6,29 +6,39 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
-import java.util.zip.Inflater;
+import java.util.ArrayList;
 
 import client.app.clientapp.R;
+import client.app.clientapp.model.Notification;
 
 
-public class NotificationAdapter extends ArrayAdapter<Integer> {
+public class NotificationAdapter extends ArrayAdapter<Notification> {
 
-    Activity activity;
+    Context context;
     LayoutInflater inflater;
+    ArrayList<Notification> list;
 
-    public NotificationAdapter(Activity activity, int count) {
+    public NotificationAdapter(Context context, LayoutInflater inflater, ArrayList<Notification> list) {
 
-        super(activity, R.layout.list_item_notification, count);
-
-        this.activity = activity;
-        this.inflater = activity.getLayoutInflater();
+        super(context, R.layout.list_item_notification, list);
+        this.context = context;
+        this.inflater = inflater;
+        this.list = list;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         View view = inflater.inflate(R.layout.list_item_notification, null);
+        TextView textDate = (TextView)view.findViewById(R.id.txtDate);
+        TextView textTime = (TextView)view.findViewById(R.id.txtTime);
+        TextView textMessage = (TextView)view.findViewById(R.id.txtNotification);
+
+        textDate.setText("" + list.get(position).date);
+        textTime.setText("" + list.get(position).time);
+        textMessage.setText("" + list.get(position).message);
 
         return view;
     }

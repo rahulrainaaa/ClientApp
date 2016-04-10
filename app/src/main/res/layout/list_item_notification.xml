@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:paddingBottom="10dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingTop="10dp"
+    android:paddingBottom="15dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:paddingTop="15dp"
     android:background="#fafafa"
     android:layout_height="wrap_content" >
 
@@ -17,7 +17,7 @@
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
         android:paddingTop="1dp"
-        android:background="#c72621" >
+        android:background="#c0504e" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,7 +75,7 @@
                 android:paddingRight="4dp"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
-                android:text="Notifiaction text\ndlfgnk\nldkfg\nkdlfng\nlkdf"
+                android:text="kdsjfnsdjkfn"
                 android:id="@+id/txtNotification"
                 android:textColor="#000000" />
 
