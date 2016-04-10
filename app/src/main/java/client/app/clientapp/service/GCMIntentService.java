@@ -70,7 +70,7 @@ public class GCMIntentService extends IntentService {
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
                 notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
-                this).setSmallIcon(R.drawable.icon_map_pin)
+                this).setSmallIcon(R.drawable.icon_notif)
                 .setContentTitle(title)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(msg))
                 .setContentText(msg.toString());
@@ -92,7 +92,7 @@ public class GCMIntentService extends IntentService {
             JSONObject json = new JSONObject();
             Calendar c = Calendar.getInstance();
             SimpleDateFormat sdfDate = new SimpleDateFormat("dd-MMMM-yyyy");
-            SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm:ss a");
+            SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm a");
             String datee = sdfDate.format(c.getTime());
             String timee = sdfTime.format(c.getTime());
             json.put("message", "" + msg);

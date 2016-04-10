@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         editText = (EditText)findViewById(R.id.editText);
+        editText.setVisibility(View.GONE);
 
         SharedPreferences s = getSharedPreferences("info_cache", 0);
         String pref = s.getString("REGISTER_GCM", "NO").trim();
