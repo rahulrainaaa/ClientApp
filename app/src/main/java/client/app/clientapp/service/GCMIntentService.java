@@ -91,11 +91,14 @@ public class GCMIntentService extends IntentService {
             JSONArray j = new JSONArray(str);
             JSONObject json = new JSONObject();
             Calendar c = Calendar.getInstance();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd:MMMM:yyyy HH:mm:ss a");
-            String datetime = sdf.format(c.getTime());
+            SimpleDateFormat sdfDate = new SimpleDateFormat("dd-MMMM:yyyy");
+            SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm:ss a");
+            String datee = sdfDate.format(c.getTime());
+            String timee = sdfTime.format(c.getTime());
             json.put("message", "" + msg);
             json.put("title", "" + title);
-            json.put("datetime", "" + datetime);
+            json.put("date", "" + datee);
+            json.put("time", "" + timee);
             j.put(json);
             SharedPreferences.Editor se = getSharedPreferences("info_push",0).edit();
             se.putString("data", j.toString());
