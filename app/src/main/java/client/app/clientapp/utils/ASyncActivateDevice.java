@@ -31,7 +31,7 @@ public class ASyncActivateDevice extends AsyncTask<String, String, String> {
     @Override
     protected void onPreExecute() {
 
-        Toast.makeText(context, "Registering", Toast.LENGTH_LONG).show();
+        //Toast.makeText(context, "Registering", Toast.LENGTH_LONG).show();
         jsonRequest = new JSONObject();
         try
         {
@@ -122,7 +122,7 @@ public class ASyncActivateDevice extends AsyncTask<String, String, String> {
             Toast.makeText(context, "Please check internet connection.", Toast.LENGTH_LONG).show();
         }
 
-        Toast.makeText(context, "" + s, Toast.LENGTH_LONG).show();
+       // Toast.makeText(context, "" + s, Toast.LENGTH_LONG).show();
 
         super.onPostExecute("");
     }

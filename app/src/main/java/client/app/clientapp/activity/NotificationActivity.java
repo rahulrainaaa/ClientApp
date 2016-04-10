@@ -2,14 +2,18 @@ package client.app.clientapp.activity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -17,22 +21,62 @@ import client.app.clientapp.R;
 import client.app.clientapp.adapter.NotificationAdapter;
 import client.app.clientapp.model.Notification;
 
-public class NotificationActivity extends AppCompatActivity {
+public class NotificationActivity extends AppCompatActivity implements AdapterView.OnItemLongClickListener {
 
     ListView lw;
     NotificationAdapter adapter;
+    JSONArray jarray;
+    ArrayList<Notification> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
 
+        lw = (ListView)findViewById(R.id.listView11);
+        lw.setOnItemLongClickListener(this);
+        list = new ArrayList<Notification>();
+        adapter = new NotificationAdapter(this, getLayoutInflater(), list);
+        lw.setAdapter(adapter);
+        populateListData();
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+        Snackbar.make(view, "Are you sure to delete this?", Snackbar.LENGTH_LONG).setAction("Delete", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                JSONArray j = new JSONArray();
+                try {
+                    for (int i = 0; i < jarray.length(); i++) {
+                        if (position == i) {
+                            continue;
+                        }
+                        JSONObject json = new JSONObject();
+                        json = jarray.getJSONObject(i);
+                        j.put(json);
+                    }
+                    SharedPreferences.Editor se = getSharedPreferences("info_push", 0).edit();
+                    se.putString("data", j.toString());
+                    se.commit();
+                } catch (JSONException e) {}
+
+                populateListData();
+            }
+        }).show();
+        return true;
+    }
+
+    private void populateListData()
+    {
         SharedPreferences s = getSharedPreferences("info_push", 0);
         String data = s.getString("data", "[]");
-        ArrayList<Notification> list = new ArrayList<Notification>();
+        list.clear();
         try
         {
-            JSONArray jarray = new JSONArray(data);
+            jarray = new JSONArray(data);
             for(int i = 0; i < jarray.length(); i++)
             {
                 Notification n = new Notification();
@@ -46,13 +90,6 @@ public class NotificationActivity extends AppCompatActivity {
         catch (JSONException e) {
 
         }
-
-        lw = (ListView)findViewById(R.id.listView11);
-        adapter = new NotificationAdapter(this, getLayoutInflater(), list);
-        lw.setAdapter(adapter);
-
-
-
+       adapter.notifyDataSetChanged();
     }
-
 }

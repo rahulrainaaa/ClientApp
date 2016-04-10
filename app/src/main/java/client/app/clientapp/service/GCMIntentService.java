@@ -21,6 +21,7 @@ import java.util.Calendar;
 
 import client.app.clientapp.R;
 import client.app.clientapp.activity.DashboardActivity;
+import client.app.clientapp.activity.NotificationActivity;
 import client.app.clientapp.broadcast.MyBroadcastReceiver;
 
 public class GCMIntentService extends IntentService {
@@ -62,28 +63,26 @@ public class GCMIntentService extends IntentService {
 
     private void sendNotification(String title, String msg) {
 
-        mNotificationManager = (NotificationManager) this
+       mNotificationManager = (NotificationManager) this
                 .getSystemService(Context.NOTIFICATION_SERVICE);
-        Intent notificationIntent = new Intent(this, DashboardActivity.class);
+        Intent notificationIntent = new Intent(this, NotificationActivity.class);
         notificationIntent.putExtra("NotificationIntent", true);
         notificationIntent.setFlags(Notification.FLAG_AUTO_CANCEL);
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
                 notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
                 this).setSmallIcon(R.drawable.icon_notif)
-                .setContentTitle(title)
+                .setContentTitle("" + title)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(msg))
                 .setContentText(msg.toString());
 
         mBuilder.setContentIntent(contentIntent);
         mBuilder.setAutoCancel(true);
         mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
-
     }
 
     private void saveData(String title, String msg)
     {
-
         try
         {
             SharedPreferences s = getSharedPreferences("info_push", 0);

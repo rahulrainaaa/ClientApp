@@ -3,6 +3,7 @@ package client.app.clientapp.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.design.widget.Snackbar;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import client.app.clientapp.R;
+import client.app.clientapp.utils.ASyncActivateDevice;
 import client.app.clientapp.utils.Constants;
 
 
@@ -85,6 +87,20 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         imgCall.setOnLongClickListener(this);
         imgLocation.setOnLongClickListener(this);
         imgMaps.setOnLongClickListener(this);
+
+        SharedPreferences s = getSharedPreferences("info_cache", 0);
+        String pref = s.getString("REGISTER_GCM", "NO").trim();
+        if(!pref.equals("NO"))
+        {
+            if(s.getString("ACTIVATE_SMS","NO").equals("NO"))
+            {
+                if(!s.getString("REGISTER_SMS", "NO").equals("NO"))
+                {
+                    ASyncActivateDevice info = new ASyncActivateDevice(this);
+                    info.execute("");
+                }
+            }
+        }
     }
 
     @Override
