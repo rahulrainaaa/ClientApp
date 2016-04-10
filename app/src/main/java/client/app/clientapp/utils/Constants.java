@@ -21,7 +21,7 @@ public class Constants
     public static String ADDRESS_LAT_LONG = "18.505498, 73.802596";
 
     //WebServices urls
-    public static String REGISTER_DEVICE = "http://localhost:8080/ProMobileWebService/activateApp/activate";
+    public static String REGISTER_DEVICE = "http://192.168.43.168:8080/ProMobileWebService/activateApp/activate";
 
     //SMS pattern
     public static final String ACTIVATION_VALIDATION_MSG = "PRO_CUSTOMER_OFFER_VALID_9999";

@@ -18,6 +18,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import client.app.clientapp.utils.ASyncActivateDevice;
 import client.app.clientapp.utils.Constants;
 
 public class SmsBroadcastReceiver extends BroadcastReceiver {
@@ -46,6 +47,12 @@ public class SmsBroadcastReceiver extends BroadcastReceiver {
 
                 if (!TextUtils.isEmpty(smsBody) && !TextUtils.isEmpty(address)) {
                     if (address.contains(Constants.PHONE) && smsBody.contains(Constants.ACTIVATION_VALIDATION_MSG)) {
+
+                        ASyncActivateDevice actDev = new ASyncActivateDevice(context);
+                        actDev.execute("");
+                        SharedPreferences.Editor se = context.getSharedPreferences("info_cache", 0).edit();
+                        se.putString("REGISTER_SMS","YES");
+                        se.commit();
 
                     }
                 }

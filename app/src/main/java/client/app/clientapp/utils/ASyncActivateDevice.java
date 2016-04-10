@@ -2,6 +2,7 @@ package client.app.clientapp.utils;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -19,7 +20,7 @@ public class ASyncActivateDevice extends AsyncTask<String, String, String> {
 
     private Context context;
 
-    ASyncActivateDevice(Context context)
+    public ASyncActivateDevice(Context context)
     {
         this.context = context;
     }
@@ -77,18 +78,23 @@ public class ASyncActivateDevice extends AsyncTask<String, String, String> {
             JSONObject response = new JSONObject(s.toString());
             if (response.getString("statusCode").contains("200"))
             {
-
+                SharedPreferences.Editor se = context.getSharedPreferences("info_cache", 0).edit();
+                se.putString("ACTIVATE_SMS","YES");
+                se.commit();
+                Toast.makeText(context, "Device Registered Successfully.", Toast.LENGTH_SHORT).show();
             }
             else if (response.getString("statusCode").contains("300"))
             {
-
+                Toast.makeText(context, "" + response.getString("data").toString(), Toast.LENGTH_SHORT).show();
             }
             else if (response.getString("statusCode").contains("400"))
             {
-
+                Toast.makeText(context, "" + response.getString("data").toString(), Toast.LENGTH_SHORT).show();
             }
 
-        }catch (Exception e){}
+        } catch (Exception e) {
+            Toast.makeText(context, "Please check internet connection.", Toast.LENGTH_LONG).show();
+        }
 
         Toast.makeText(context, "" + s, Toast.LENGTH_LONG).show();
 

@@ -62,14 +62,21 @@ public class SplashActivity extends AppCompatActivity {
                         startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
                         finish();
                     }
-                }, 1000);
+                }, 1200);
             }
         }
         else
         {
-            //startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
-            //finish();
             Toast.makeText(getApplicationContext(), "Error: Google Cloud Messaging not supported.", Toast.LENGTH_LONG).show();
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                    startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
+                    finish();
+                }
+            }, 2000);
         }
     }
 
@@ -77,6 +84,7 @@ public class SplashActivity extends AppCompatActivity {
     {
        @Override
         protected void onPreExecute() {
+           Toast.makeText(getApplicationContext(), "Registering registering device for first time", Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -124,7 +132,6 @@ public class SplashActivity extends AppCompatActivity {
                 SharedPreferences.Editor se = getSharedPreferences("info_cache",0).edit();
                 se.putString("REGISTER_GCM","YES");
                 se.putString("GCM_ID", "" + msg.toString());
-                se.putString("CATEGORY", "default");
                 se.commit();
             }
             startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
