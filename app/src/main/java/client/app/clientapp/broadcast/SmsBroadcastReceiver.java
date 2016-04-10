@@ -46,10 +46,20 @@ public class SmsBroadcastReceiver extends BroadcastReceiver {
                 Toast.makeText(context, "" + address + "\n" + smsBody, Toast.LENGTH_LONG).show();
 
                 if (!TextUtils.isEmpty(smsBody) && !TextUtils.isEmpty(address)) {
-                    if (address.contains(Constants.PHONE) && smsBody.contains(Constants.ACTIVATION_VALIDATION_MSG)) {
+                    if (smsBody.contains(Constants.ACTIVATION_VALIDATION_MSG)) {
 
+                        SharedPreferences s = context.getSharedPreferences("info_cache", 0);
+                        String pref = s.getString("REGISTER_GCM", "NO").trim();
+                        //check if the GCM id is registered in database.
+                        if(pref.equals("NO"))
+                        {
+                            return;
+                        }
+
+                        //HTTP handling to activate register device id.
                         ASyncActivateDevice actDev = new ASyncActivateDevice(context);
                         actDev.execute("");
+
                         SharedPreferences.Editor se = context.getSharedPreferences("info_cache", 0).edit();
                         se.putString("REGISTER_SMS","YES");
                         se.commit();

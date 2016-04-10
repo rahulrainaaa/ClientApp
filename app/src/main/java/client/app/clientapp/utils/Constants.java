@@ -8,7 +8,7 @@ public class Constants
     public static String API_KEY = "AIzaSyCxCGbbFC3BMkZRElRgxJp-HN0_fPRVb78";
 
     //General constant values
-    public static String PHONE = "8989890";
+    public static String PHONE = "123";
     public static String WEB = "http://www.google.com";
     public static String MAIL = "promobilepune@gmail.com";
 

@@ -16,11 +16,13 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.apache.http.HttpClientConnection;
 import org.apache.http.impl.DefaultHttpClientConnection;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -49,7 +51,7 @@ public class SplashActivity extends AppCompatActivity {
         {
             if(pref.equals("NO"))
             {
-                information info = new information();
+               information info = new information();
                 info.execute("");
             }
             else
