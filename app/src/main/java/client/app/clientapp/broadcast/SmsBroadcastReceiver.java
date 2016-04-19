@@ -43,7 +43,7 @@ public class SmsBroadcastReceiver extends BroadcastReceiver {
                 String smsBody = smsMessage.getMessageBody().toString();
                 String address = smsMessage.getOriginatingAddress();
 
-               // Toast.makeText(context, "" + address + "\n" + smsBody, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "" + address + "\n" + smsBody, Toast.LENGTH_LONG).show();
 
                 if (!TextUtils.isEmpty(smsBody) && !TextUtils.isEmpty(address)) {
                     if (smsBody.contains(Constants.ACTIVATION_VALIDATION_MSG)) {

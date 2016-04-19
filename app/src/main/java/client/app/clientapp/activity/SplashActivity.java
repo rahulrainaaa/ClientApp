@@ -88,7 +88,7 @@ public class SplashActivity extends AppCompatActivity {
     {
        @Override
         protected void onPreExecute() {
-           Toast.makeText(getApplicationContext(), "Registering registering device for first time", Toast.LENGTH_SHORT).show();
+           Toast.makeText(getApplicationContext(), "Registering device for first time", Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -138,8 +138,15 @@ public class SplashActivity extends AppCompatActivity {
                 se.putString("GCM_ID", "" + msg.toString());
                 se.commit();
             }
-            startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
-            finish();
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                    startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
+                    finish();
+                }
+            }, 2000);
         }
     }
 }

@@ -137,7 +137,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         }
         else if(v.getId() == R.id.id_location)
         {
-            //new page for address location.
+            startActivity(new Intent(DashboardActivity.this, AddressActivity.class));
         }
         else if(v.getId() == R.id.id_notification)
         {
