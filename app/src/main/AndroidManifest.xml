@@ -79,6 +79,7 @@
             </intent-filter>
         </receiver>
 
+        <activity android:name=".activity.AddressActivity"></activity>
     </application>
 
 </manifest>
