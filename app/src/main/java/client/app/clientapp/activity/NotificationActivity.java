@@ -61,7 +61,9 @@ public class NotificationActivity extends AppCompatActivity implements AdapterVi
                     SharedPreferences.Editor se = getSharedPreferences("info_push", 0).edit();
                     se.putString("data", j.toString());
                     se.commit();
-                } catch (JSONException e) {}
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
                 populateListData();
             }
@@ -77,7 +79,9 @@ public class NotificationActivity extends AppCompatActivity implements AdapterVi
         try
         {
             jarray = new JSONArray(data);
-            for(int i = 0; i < jarray.length(); i++)
+
+            //Iteration in descending order  to put latest notification on top.
+            for(int i = (jarray.length() - 1); i >= 0 ; i--)
             {
                 Notification n = new Notification();
                 n.title = "" + jarray.getJSONObject(i).getString("title");

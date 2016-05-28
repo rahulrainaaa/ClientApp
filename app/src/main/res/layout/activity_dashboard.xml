@@ -207,9 +207,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Powered By ProMobile"
+            android:text="POWERED BY PROMOBILE"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
+            android:textColor="#ffffff"
             android:id="@+id/textView" />
 
     </LinearLayout>

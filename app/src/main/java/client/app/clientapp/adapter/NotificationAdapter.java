@@ -2,6 +2,7 @@ package client.app.clientapp.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,9 @@ public class NotificationAdapter extends ArrayAdapter<Notification> {
         textDate.setText("" + list.get(position).date);
         textTime.setText("" + list.get(position).time);
         textMessage.setText("" + list.get(position).message);
+
+        //Make URL and Phone hyperlink (click and go).
+        Linkify.addLinks(textMessage, Linkify.WEB_URLS | Linkify.PHONE_NUMBERS);
 
         return view;
     }
