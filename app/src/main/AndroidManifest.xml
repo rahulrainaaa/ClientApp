@@ -39,7 +39,7 @@
 
         <meta-data
             android:name="com.google.android.gms.API_KEY"
-            android:value="AIzaSyCxCGbbFC3BMkZRElRgxJp-HN0_fPRVb78" />
+            android:value="AIzaSyBR7CXvC8-BK5MqrFfxT_f0N8Fb00qCxHk" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
