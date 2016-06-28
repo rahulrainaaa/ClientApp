@@ -106,19 +106,11 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
 
-        if (v.getId() == R.id.id_call) {
-            try {
-                if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(getApplicationContext(), "Call Permission Denied.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                String uri = "tel:" + Constants.PHONE;
-                Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse(uri));
-                startActivity(callIntent);
-            } catch (Exception e)
-            {
-                Toast.makeText(getApplicationContext(), "Cannot Make Call.", Toast.LENGTH_SHORT).show();
-            }
+        if (v.getId() == R.id.id_call)
+        {
+            String uri = "tel:" + Constants.PHONE;
+            Intent callIntent = new Intent(Intent.ACTION_DIAL, Uri.parse(uri));
+            startActivity(callIntent);
         }
         else if(v.getId() == R.id.id_email)
         {
