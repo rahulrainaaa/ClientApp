@@ -5,7 +5,7 @@ public class Constants
 {
     //Google GCM API information
     public static String PROJECT_NUMBER = "193565881799";
-    public static String API_KEY = "AIzaSyCxCGbbFC3BMkZRElRgxJp-HN0_fPRVb78";
+    public static String API_KEY = "AIzaSyBR7CXvC8-BK5MqrFfxT_f0N8Fb00qCxHk";
 
     //General constant values
     public static String PHONE = "123";
@@ -21,7 +21,9 @@ public class Constants
     public static String ADDRESS_LAT_LONG = "18.505498, 73.802596";
 
     //WebServices urls
-    public static String REGISTER_DEVICE = "http://rahul.mulkindia.in/ProMobileWebService/activateApp/activate";
+    //public static String REGISTER_DEVICE = "http://rahul.mulkindia.in/ProMobileWebService/activateApp/activate";
+
+    public static String REGISTER_DEVICE = "http://192.168.1.2:8080/ProMobileWebService/activateApp/activate";
 
     //SMS pattern
     public static final String ACTIVATION_VALIDATION_MSG = "PRO_CUSTOMER_OFFER_VALID_9999";
