@@ -23,7 +23,7 @@ public class Constants
     //WebServices urls
     //public static String REGISTER_DEVICE = "http://rahul.mulkindia.in/ProMobileWebService/activateApp/activate";
 
-    public static String REGISTER_DEVICE = "http://192.168.1.2:8080/ProMobileWebService/activateApp/activate";
+    public static String REGISTER_DEVICE = "http://rahul.mulkindia.in/ProMobileWebService/activateApp/activate";
 
     //SMS pattern
     public static final String ACTIVATION_VALIDATION_MSG = "PRO_CUSTOMER_OFFER_VALID_9999";

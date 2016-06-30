@@ -48,10 +48,11 @@ public class NotificationActivity extends AppCompatActivity implements AdapterVi
             @Override
             public void onClick(View v) {
 
+                int jsonPos = jarray.length() - 1 - position;
                 JSONArray j = new JSONArray();
                 try {
                     for (int i = 0; i < jarray.length(); i++) {
-                        if (position == i) {
+                        if (jsonPos == i) {
                             continue;
                         }
                         JSONObject json = new JSONObject();

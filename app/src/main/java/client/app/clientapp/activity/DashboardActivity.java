@@ -1,13 +1,13 @@
 package client.app.clientapp.activity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,9 +17,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import client.app.clientapp.R;
 import client.app.clientapp.utils.ASyncActivateDevice;
 import client.app.clientapp.utils.Constants;
+import client.app.clientapp.utils.Utility;
 
 
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
@@ -101,6 +103,25 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 }
             }
         }
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                //Check if the SMS Permission is given or not
+                int check1 = ContextCompat.checkSelfPermission(DashboardActivity.this, Manifest.permission.RECEIVE_SMS);
+                int check2 = ContextCompat.checkSelfPermission(DashboardActivity.this, Manifest.permission.READ_SMS);
+
+                if((check1 != PackageManager.PERMISSION_GRANTED) || (check2 != PackageManager.PERMISSION_GRANTED))
+                {
+                    Toast.makeText(getApplicationContext(), "Go to permissions and \nEnable the SMS permission", Toast.LENGTH_LONG).show();
+                    Utility.startInstalledAppDetailsActivity(DashboardActivity.this);
+                }
+
+            }
+        }, 1200);
+
     }
 
     @Override
