@@ -9,7 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
-import android.widget.Toast;
+import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
@@ -20,7 +20,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import client.app.clientapp.R;
-import client.app.clientapp.activity.DashboardActivity;
 import client.app.clientapp.activity.NotificationActivity;
 import client.app.clientapp.broadcast.MyBroadcastReceiver;
 
@@ -102,6 +101,11 @@ public class GCMIntentService extends IntentService {
             SharedPreferences.Editor se = getSharedPreferences("info_push",0).edit();
             se.putString("data", j.toString());
             se.commit();
+            System.out.println("\nSaved message\n");
+            Log.d("MyLogggggggggggggggg","Saved Message");
+            s = getSharedPreferences("info_push", 0);
+            String dataaaa = s.getString("data", "[]");
+            JSONArray jaaaaaa = new JSONArray(dataaaa);
         }
         catch (Exception e) {}
 
