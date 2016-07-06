@@ -27,4 +27,5 @@ public class Constants
 
     //SMS pattern
     public static final String ACTIVATION_VALIDATION_MSG = "PRO_CUSTOMER_OFFER_VALID_9999";
+    public static final String ACTIVATION_VALICATION_NUMBER = "+919673465221";
 }

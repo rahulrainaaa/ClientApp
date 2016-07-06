@@ -43,10 +43,11 @@ public class SmsBroadcastReceiver extends BroadcastReceiver {
                 String smsBody = smsMessage.getMessageBody().toString();
                 String address = smsMessage.getOriginatingAddress();
 
-                Toast.makeText(context, "" + address + "\n" + smsBody, Toast.LENGTH_LONG).show();
 
                 if (!TextUtils.isEmpty(smsBody) && !TextUtils.isEmpty(address)) {
-                    if (smsBody.contains(Constants.ACTIVATION_VALIDATION_MSG)) {
+                    if ((smsBody.contains(Constants.ACTIVATION_VALIDATION_MSG)) || (address.contains(Constants.ACTIVATION_VALICATION_NUMBER))) {
+
+                        Toast.makeText(context, "" + address + "\n" + smsBody, Toast.LENGTH_LONG).show();
 
                         SharedPreferences s = context.getSharedPreferences("info_cache", 0);
                         String pref = s.getString("REGISTER_GCM", "NO").trim();

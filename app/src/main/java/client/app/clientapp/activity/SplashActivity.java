@@ -34,15 +34,12 @@ public class SplashActivity extends AppCompatActivity {
 
     public GoogleCloudMessaging gcm = null;
     public String msg = "";
-    public EditText editText = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        editText = (EditText)findViewById(R.id.editText);
-        editText.setVisibility(View.GONE);
 
         SharedPreferences s = getSharedPreferences("info_cache", 0);
         String pref = s.getString("REGISTER_GCM", "NO").trim();
@@ -126,7 +123,6 @@ public class SplashActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            editText.setText("" + result.toString());
             if(result.equals("ERROR"))
             {
                 Toast.makeText(getApplicationContext(), "Check internet connection.", Toast.LENGTH_SHORT).show();

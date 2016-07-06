@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import org.apache.commons.codec.binary.Base64;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
@@ -52,8 +53,11 @@ public class GCMIntentService extends IntentService {
             }
             else if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType))
             {
-                saveData("" + extras.getString("title"), "" + extras.getString("message"));
-                sendNotification("" + extras.getString("title"), "" + extras.getString("message"));
+                String byteEncodeString = extras.getString("message").toString();
+                System.out.println("***********************************************" +byteEncodeString);
+                String actualMessage = new String(Base64.decodeBase64(byteEncodeString.getBytes()));
+                saveData("" + extras.getString("title"), "" + actualMessage.toString());
+                sendNotification("" + extras.getString("title"), "" + actualMessage.toString());
             }
         }
         MyBroadcastReceiver.completeWakefulIntent(intent);
